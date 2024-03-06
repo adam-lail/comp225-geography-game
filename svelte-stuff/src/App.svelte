@@ -13,7 +13,7 @@
 
 	console.log(countriesHashMap);
 
-	function findCountryCode() {
+	function displayUserCountry() {
 		var country = document.getElementById("country").value;
 		console.log(country)
 		const countryid = countriesHashMap[country]
@@ -23,19 +23,19 @@
 			countries = [...countries, countryid];
 			console.log("inside if");
 		}
-		console.log(countries)
+		console.log(countries);
 	};
 
 </script>
 
-<label for = "country"> country:</label>
+<label for = "country"> Country:</label>
 <input type="text" id="country" name="country" placeholder="Sudan">
-<button type="button" on:click="{findCountryCode}"> Submit </button>
+<button type="button" on:click="{displayUserCountry}"> Submit </button>
 
-<p>
+<!-- <p>
 	The countries displayed are:
 	<b>{countries}</b>
-</p>
+</p> -->
 
 <Map countries={countries} />
 

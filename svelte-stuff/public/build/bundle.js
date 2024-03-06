@@ -388,13 +388,6 @@ var app = (function () {
         else
             dispatch_dev('SvelteDOMSetAttribute', { node, attribute, value });
     }
-    function set_data_dev(text, data) {
-        data = '' + data;
-        if (text.data === data)
-            return;
-        dispatch_dev('SvelteDOMSetData', { node: text, data });
-        text.data = data;
-    }
     function validate_slots(name, slot, keys) {
         for (const slot_key of Object.keys(slot)) {
             if (!~keys.indexOf(slot_key)) {
@@ -18182,11 +18175,6 @@ var app = (function () {
     	let t2;
     	let button;
     	let t4;
-    	let p;
-    	let t5;
-    	let b;
-    	let t6;
-    	let t7;
     	let map;
     	let current;
     	let mounted;
@@ -18200,30 +18188,23 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			label = element("label");
-    			label.textContent = "country:";
+    			label.textContent = "Country:";
     			t1 = space();
     			input = element("input");
     			t2 = space();
     			button = element("button");
     			button.textContent = "Submit";
     			t4 = space();
-    			p = element("p");
-    			t5 = text("The countries displayed are:\n\t");
-    			b = element("b");
-    			t6 = text(/*countries*/ ctx[0]);
-    			t7 = space();
     			create_component(map.$$.fragment);
     			attr_dev(label, "for", "country");
-    			add_location(label, file, 30, 0, 575);
+    			add_location(label, file, 30, 0, 579);
     			attr_dev(input, "type", "text");
     			attr_dev(input, "id", "country");
     			attr_dev(input, "name", "country");
     			attr_dev(input, "placeholder", "Sudan");
-    			add_location(input, file, 31, 0, 616);
+    			add_location(input, file, 31, 0, 620);
     			attr_dev(button, "type", "button");
-    			add_location(button, file, 32, 0, 684);
-    			add_location(b, file, 36, 1, 789);
-    			add_location(p, file, 34, 0, 754);
+    			add_location(button, file, 32, 0, 688);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -18235,21 +18216,15 @@ var app = (function () {
     			insert_dev(target, t2, anchor);
     			insert_dev(target, button, anchor);
     			insert_dev(target, t4, anchor);
-    			insert_dev(target, p, anchor);
-    			append_dev(p, t5);
-    			append_dev(p, b);
-    			append_dev(b, t6);
-    			insert_dev(target, t7, anchor);
     			mount_component(map, target, anchor);
     			current = true;
 
     			if (!mounted) {
-    				dispose = listen_dev(button, "click", /*findCountryCode*/ ctx[1], false, false, false, false);
+    				dispose = listen_dev(button, "click", /*displayUserCountry*/ ctx[1], false, false, false, false);
     				mounted = true;
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (!current || dirty & /*countries*/ 1) set_data_dev(t6, /*countries*/ ctx[0]);
     			const map_changes = {};
     			if (dirty & /*countries*/ 1) map_changes.countries = /*countries*/ ctx[0];
     			map.$set(map_changes);
@@ -18270,8 +18245,6 @@ var app = (function () {
     			if (detaching) detach_dev(t2);
     			if (detaching) detach_dev(button);
     			if (detaching) detach_dev(t4);
-    			if (detaching) detach_dev(p);
-    			if (detaching) detach_dev(t7);
     			destroy_component(map, detaching);
     			mounted = false;
     			dispose();
@@ -18303,7 +18276,7 @@ var app = (function () {
 
     	console.log(countriesHashMap);
 
-    	function findCountryCode() {
+    	function displayUserCountry() {
     		var country = document.getElementById("country").value;
     		console.log(country);
     		const countryid = countriesHashMap[country];
@@ -18328,7 +18301,7 @@ var app = (function () {
     		Map: Map$1,
     		countries,
     		countriesHashMap,
-    		findCountryCode
+    		displayUserCountry
     	});
 
     	$$self.$inject_state = $$props => {
@@ -18340,7 +18313,7 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [countries, findCountryCode];
+    	return [countries, displayUserCountry];
     }
 
     class App extends SvelteComponentDev {
