@@ -17,6 +17,7 @@ coverage
 
 # build output
 dist
+build
 .vercel
 
 # OS-specific
