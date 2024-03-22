@@ -11,31 +11,19 @@
 		"Bolivia": "bo",
 	};
 
-	console.log(countriesHashMap);
-
 	function displayUserCountry() {
 		var country = document.getElementById("country").value;
-		console.log(country)
 		const countryid = countriesHashMap[country]
 		if(countryid) {
-			// countries.push(countriesHashMap[country]);
-			// countries = countries 
 			countries = [...countries, countryid];
-			console.log("inside if");
 		}
-		console.log(countries);
 	};
 
 </script>
 
-<label for = "country"> Country:</label>
+<label for = "country"> Country: </label>
 <input type="text" id="country" name="country" placeholder="Sudan">
 <button type="button" on:click="{displayUserCountry}"> Submit </button>
-
-<!-- <p>
-	The countries displayed are:
-	<b>{countries}</b>
-</p> -->
 
 <Map countries={countries} />
 
