@@ -2,6 +2,8 @@
 
 	import Map from './Map.svelte'
 
+	//import countriesHashMap from './Ids_Names_Map.js'
+
 	let countries = [];
 
 	let countriesHashMap = {
