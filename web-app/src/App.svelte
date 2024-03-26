@@ -2,16 +2,9 @@
 
 	import Map from './Map.svelte'
 
-	//import countriesHashMap from './Ids_Names_Map.js'
+	import countriesHashMap from './country_codes.js'
 
 	let countries = [];
-
-	let countriesHashMap = {
-		"Sudan": "sd",
-		"El Salvador": "sv",
-		"Mexico": "mx",
-		"Bolivia": "bo",
-	};
 
 	function displayUserCountry() {
 		var country = document.getElementById("country").value;
