@@ -2,6 +2,8 @@
 
 	export let countries;
 
+	$: innerWidth = window.innerWidth;
+	$: mapScale = 0.7*innerWidth/2754
 </script>
 
 {#each countries as country}
@@ -11,7 +13,7 @@
 {/each}
 
 <svg class="map" xmlns="http://www.w3.org/2000/svg" version="1.1" width="2754" height="1398"
-	data-visible-countries="ca mx">
+	data-visible-countries="ca mx" style:scale="{mapScale}" style:transform="translate(-85%, -105%)">
 
 	<title>World Map</title>
 	<style id="style_css_sheet" type="text/css">
