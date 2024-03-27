@@ -8,7 +8,7 @@
 
 {#each countries as country}
 
-	{@html "<style> ." + country + " { fill: red !important; } <\/style>"}
+	{@html "<style> ." + country + " { fill: red !important; pointer-events: auto !important; } <\/style>"}
 
 {/each}
 
@@ -62,6 +62,7 @@
 	stroke: #ffffff;
 	stroke-width: 0.5;
 	fill-rule: evenodd;
+	pointer-events:none;
 }
 
 /*
