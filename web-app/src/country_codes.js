@@ -1,7 +1,4 @@
-// Generated file - DO NOT EDIT 
-
 export default {
-	"country_name": "country_code",
 	"Andorra": "ad",
 	"United Arab Emirates": "ae",
 	"Afghanistan": "af",
@@ -65,7 +62,6 @@ export default {
 	"United Kingdom of Great Britain and Northern Ireland": "gb",
 	"Grenada": "gd",
 	"Georgia": "ge",
-	"French Guiana": "gf",
 	"Ghana": "gh",
 	"Gambia (the)": "gm",
 	"Guinea": "gn",
