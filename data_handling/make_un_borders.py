@@ -22,7 +22,7 @@ def make_un_borders():
             if b[0].lower() in lower_un_countries:
                 if len(b) == 4 and b[2].lower() in lower_un_countries:
                     un_borders.write('"' + b[0] + '","' + b[1] + '","' + b[2] + '","' + b[3] + '"\n')
-                else:
+                elif b[2] == "":
                     un_borders.write('"' + b[0] + '","' + b[1] + '","",""\n')
 
 make_un_borders()
