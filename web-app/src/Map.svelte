@@ -4,7 +4,11 @@
 
 	$: innerWidth = window.innerWidth;
 	$: innerHeight = window.innerHeight;
-	$: mapScale = 0.7*innerWidth/2754
+	$: mapScale = 2;
+	$: viewWidth = 100;
+	$: viewHeight = 50;
+
+
 </script>
 
 {#each countries as country}
@@ -13,8 +17,9 @@
 
 {/each}
 
+
 <style>
-	.container{
+	#container{
 		border: 1px solid blue;
 		overflow: scroll;
 		width: 70%;
@@ -23,13 +28,10 @@
 		top: 10%;
 		position: relative;
 	}
-
-	.map{
-		overflow: scroll;
-	}
 </style>
-<div class="container">
-	<svg class="map" xmlns="http://www.w3.org/2000/svg" version="1.1" width="2754" height="1398" viewBox = "0 0 2800 1400" >
+<h1>mapScale = {mapScale}</h1>
+<div id="container">
+	<svg id="map"class="map" xmlns="http://www.w3.org/2000/svg" version="1.1" width="{2754 * mapScale}" height="{1398 * mapScale}" viewBox="0 0 2800 1400" >
 
 		<title>World Map</title>
 		<style id="style_css_sheet" type="text/css">

@@ -11,6 +11,7 @@
 		const countryid = countriesHashMap[country]
 		if(countryid) {
 			countries = [...countries, countryid];
+			document.getElementById(countryid).scrollIntoView({ behavior: "smooth", block: "center", inline: "center" })
 		}
 	};
 
