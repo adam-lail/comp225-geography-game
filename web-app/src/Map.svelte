@@ -1,7 +1,14 @@
+
 <script>
 
 	export let countries;
 	$: zoomedIn = false;
+
+	import { chooseEndCountries } from './path_algorithm.js'
+
+	let chooseEndCountriesVariable = new chooseEndCountries()
+
+	countries.push(chooseEndCountriesVariable[0], chooseEndCountriesVariable[1])
 
 	$: innerWidth = window.innerWidth;
 	$: innerHeight = window.innerHeight;
@@ -25,7 +32,15 @@
 
 {#each countries as country}
 
-	{@html "<style> ." + country + " { fill: red !important; pointer-events: auto !important; } <\/style>"}
+	{#if country === countries[0] || country === countries[1]}
+
+		{@html "<style> ." + country + " { fill: blue !important; pointer-events: auto !important; } <\/style>"}
+
+	{:else}
+
+		{@html "<style> ." + country + " { fill: red !important; pointer-events: auto !important; } <\/style>"}
+
+	{/if}
 
 {/each}
 
