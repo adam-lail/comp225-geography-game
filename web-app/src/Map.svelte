@@ -1,14 +1,26 @@
 <script>
 
 	export let countries;
+	$: zoomedIn = false;
 
 	$: innerWidth = window.innerWidth;
 	$: innerHeight = window.innerHeight;
-	$: mapScale = 2;
+	$: mapScale = 1;
 	$: viewWidth = 100;
 	$: viewHeight = 50;
+	
 
+	function onClick(){
+		if (zoomedIn == false){
+			mapScale = 2;
+			zoomedIn = true;
+		}
+		else {
+			mapScale = 1;
+			zoomedIn = false;
+		}
 
+	}
 </script>
 
 {#each countries as country}
@@ -30,7 +42,8 @@
 	}
 </style>
 <h1>mapScale = {mapScale}</h1>
-<div id="container">
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<canvas id="container" on:click={onClick}>
 	<svg id="map"class="map" xmlns="http://www.w3.org/2000/svg" version="1.1" width="{2754 * mapScale}" height="{1398 * mapScale}" viewBox="0 0 2800 1400" >
 
 		<title>World Map</title>
@@ -3305,4 +3318,4 @@
 	-->
 
 	</svg>
-</div>
+</canvas>
