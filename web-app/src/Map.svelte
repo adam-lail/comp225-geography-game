@@ -112,6 +112,7 @@
 		stroke: #ffffff;
 		stroke-width: 0.5;
 		fill-rule: evenodd;
+		pointer-events: none;
 	}
 
 	/*
