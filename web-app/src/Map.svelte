@@ -58,7 +58,7 @@
 </style>
 <h1>mapScale = {mapScale}</h1>
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<canvas id="container" on:click={onClick}>
+<div id="container" on:click={onClick}>
 	<svg id="map"class="map" xmlns="http://www.w3.org/2000/svg" version="1.1" width="{2754 * mapScale}" height="{1398 * mapScale}" viewBox="0 0 2800 1400" >
 
 		<title>World Map</title>
@@ -3333,4 +3333,4 @@
 	-->
 
 	</svg>
-</canvas>
+</div>
