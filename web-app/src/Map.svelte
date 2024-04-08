@@ -2,7 +2,7 @@
 <script>
 
 	export let countries;
-	$: zoomedIn = false;
+
 
 	import { chooseEndCountries } from './path_algorithm.js'
 
@@ -10,6 +10,7 @@
 
 	countries.push(chooseEndCountriesVariable[0], chooseEndCountriesVariable[1])
 
+	$: zoomedIn = false;
 	$: innerWidth = window.innerWidth;
 	$: innerHeight = window.innerHeight;
 	$: mapScale = 1;
@@ -55,13 +56,16 @@
 		top: 10%;
 		position: relative;
 	}
+
+	g{
+		pointer-events: none;
+	}
 </style>
 <h1>mapScale = {mapScale}</h1>
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div id="container" on:click={onClick}>
 	<svg id="map"class="map" xmlns="http://www.w3.org/2000/svg" version="1.1" width="{2754 * mapScale}" height="{1398 * mapScale}" viewBox="0 0 2800 1400" >
 
-		<title>World Map</title>
 		<style id="style_css_sheet" type="text/css">
 
 	/*
@@ -108,7 +112,6 @@
 		stroke: #ffffff;
 		stroke-width: 0.5;
 		fill-rule: evenodd;
-		pointer-events:none;
 	}
 
 	/*
