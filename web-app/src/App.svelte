@@ -1,4 +1,5 @@
 <script>
+	import AutoComplete from 'simple-svelte-autocomplete'
 
 	import Map from './Map.svelte'
 
@@ -11,6 +12,7 @@
 	let chooseEndCountriesFunction = new chooseEndCountries()
 
 	let countries = [];
+	let selectedCountries;
 
 	var bfs = false;
 	
@@ -52,6 +54,9 @@
 	<label for = "country"> Country: </label>
 	<input type="text" id="country" name="country" placeholder="Sudan">
 	<button type="button" on:click="{displayUserCountry}"> Submit </button>
+
+	<AutoComplete items={Object.keys(countriesHashMap)}/>
+
 	{#if isTherePath}
 		<p>You made a path!</p>
 	{:else if !isTherePath}
