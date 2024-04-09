@@ -15,6 +15,8 @@
 	var bfs = false;
 	
 	var isTherePath = false;
+
+	var homeScreen = true;
 	
 	const start1 = chooseEndCountriesFunction[0]
 	
@@ -41,16 +43,23 @@
 
 </script>
 
-<label for = "country"> Country: </label>
-<input type="text" id="country" name="country" placeholder="Sudan">
-<button type="button" on:click="{displayUserCountry}"> Submit </button>
-{#if isTherePath}
-	<p>You made a path!</p>
-{:else if !isTherePath}
-	<p>Keep trying to make a path!</p>
+{#if homeScreen}
+	<label for = "title"> Geography Game </label>
+	<button type="button" on:click={() => homeScreen=false}> Start </button>
 {/if}
 
-<Map countries={countries} />
+{#if !homeScreen}
+	<label for = "country"> Country: </label>
+	<input type="text" id="country" name="country" placeholder="Sudan">
+	<button type="button" on:click="{displayUserCountry}"> Submit </button>
+	{#if isTherePath}
+		<p>You made a path!</p>
+	{:else if !isTherePath}
+		<p>Keep trying to make a path!</p>
+	{/if}
+
+	<Map countries={countries} />
+{/if}
 
 
 
