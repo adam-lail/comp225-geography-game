@@ -18,6 +18,7 @@
 	// $: viewHeight = 50;
 
 
+	// from https://stackoverflow.com/questions/76150884/how-to-use-the-mouse-wheel-to-zoom-on-an-svg-using-the-viewbox
 	window.addEventListener("DOMContentLoaded", (event) => {
 		const svg = document.querySelector('svg');
 		// zooming
@@ -48,6 +49,8 @@
 				svg.setAttribute('viewBox', `${x2} ${y2} ${width2} ${height2}`);
 			}			
 		}
+
+		//from https://css-tricks.com/creating-a-panning-effect-for-svg/ 
 		// We save the original values from the viewBox
 		var viewBox = svg.viewBox.baseVal;
 		// If browser supports pointer events
