@@ -11,9 +11,18 @@
 		const countryid = countriesHashMap[country]
 		if(countryid) {
 			countries = [...countries, countryid];
-			document.getElementById(countryid).scrollIntoView({ behavior: "smooth", block: "center", inline: "center" })
+			// scrollIntoView kinda works, should find alternative.
+			// document.getElementById(countryid).scrollIntoView({ behavior: "smooth", block: "center", inline: "center" })
+			zoomIntoView(countryid);
 		}
 	};
+
+	function zoomIntoView(countryCode) {
+		var boundingBox = document.getElementById(countryCode).getBBox();
+		var newView = `${boundingBox.x} ${boundingBox.y} ${boundingBox.width} ${boundingBox.height}`;
+		const svg = document.getElementById("map");
+		svg.setAttribute("viewBox", newView);
+	}
 
 </script>
 

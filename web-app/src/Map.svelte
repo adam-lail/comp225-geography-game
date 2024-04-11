@@ -10,25 +10,124 @@
 
 	countries.push(chooseEndCountriesVariable[0], chooseEndCountriesVariable[1])
 
-	$: zoomedIn = false;
-	$: innerWidth = window.innerWidth;
-	$: innerHeight = window.innerHeight;
+	// $: zoomedIn = false;
+	// $: innerWidth = window.innerWidth;
+	// $: innerHeight = window.innerHeight;
 	$: mapScale = 1;
-	$: viewWidth = 100;
-	$: viewHeight = 50;
-	
+	// $: viewWidth = 100;
+	// $: viewHeight = 50;
 
-	function onClick(){
-		if (zoomedIn == false){
-			mapScale = 2;
-			zoomedIn = true;
+
+	window.addEventListener("DOMContentLoaded", (event) => {
+		const svg = document.querySelector('svg');
+		// zooming
+		svg.onwheel = function (event) {
+			event.preventDefault();
+
+
+			// set the scaling factor (and make sure it's at least 10%)
+			let scale = event.deltaY / 1000;
+			if(event.deltaY != 0){
+				scale = Math.abs(scale) < .1 ? .1 * event.deltaY / Math.abs(event.deltaY) : scale;
+
+				// get point in SVG space
+				let pt = new DOMPoint(event.clientX, event.clientY);
+				pt = pt.matrixTransform(svg.getScreenCTM().inverse());
+
+				// get viewbox transform
+				let [x, y, width, height] = svg.getAttribute('viewBox').split(' ').map(Number);
+
+				// get pt.x as a proportion of width and pt.y as proportion of height
+				let [xPropW, yPropH] = [(pt.x - x) / width, (pt.y - y) / height];
+				
+				// calc new width and height, new x2, y2 (using proportions and new width and height)
+				let [width2, height2] = [width + width * scale, height + height * scale];
+				let x2 = pt.x - xPropW * width2;
+				let y2 = pt.y - yPropH * height2;        
+
+				svg.setAttribute('viewBox', `${x2} ${y2} ${width2} ${height2}`);
+			}			
 		}
-		else {
-			mapScale = 1;
-			zoomedIn = false;
+		// We save the original values from the viewBox
+		var viewBox = svg.viewBox.baseVal;
+		// If browser supports pointer events
+		if (window.PointerEvent) {
+			svg.addEventListener('pointerdown', onPointerDown); // Pointer is pressed
+			svg.addEventListener('pointerup', onPointerUp); // Releasing the pointer
+			svg.addEventListener('pointerleave', onPointerUp); // Pointer gets out of the SVG area
+			svg.addEventListener('pointermove', onPointerMove); // Pointer is moving
+		} else {
+			// Add all mouse events listeners fallback
+			svg.addEventListener('mousedown', onPointerDown); // Pressing the mouse
+			svg.addEventListener('mouseup', onPointerUp); // Releasing the mouse
+			svg.addEventListener('mouseleave', onPointerUp); // Mouse gets out of the SVG area
+			svg.addEventListener('mousemove', onPointerMove); // Mouse is moving
+
+			// Add all touch events listeners fallback
+			svg.addEventListener('touchstart', onPointerDown); // Finger is touching the screen
+			svg.addEventListener('touchend', onPointerUp); // Finger is no longer touching the screen
+			svg.addEventListener('touchmove', onPointerMove); // Finger is moving
+		}
+		// Create an SVG point that contains x & y values
+		var point = svg.createSVGPoint();
+		// This function returns an object with X & Y values from the pointer event
+		function getPointFromEvent (event) {
+			
+			// If even is triggered by a touch event, we get the position of the first finger
+			if (event.targetTouches) {
+				point.x = event.targetTouches[0].clientX;
+				point.y = event.targetTouches[0].clientY;
+			} else {
+				point.x = event.clientX;
+				point.y = event.clientY;
+			}
+			
+			// We get the current transformation matrix of the SVG and we inverse it
+			var invertedSVGMatrix = svg.getScreenCTM().inverse();
+			
+			return point.matrixTransform(invertedSVGMatrix);
 		}
 
-	}
+		// This variable will be used later for move events to check if pointer is down or not
+		var isPointerDown = false;
+
+		// This variable will contain the original coordinates when the user start pressing the mouse or touching the screen
+		var pointerOrigin;
+
+		// Function called by the event listeners when user start pressing/touching
+		function onPointerDown(event) {
+			isPointerDown = true; // We set the pointer as down
+			
+			// We get the pointer position on click/touchdown so we can get the value once the user starts to drag
+			pointerOrigin = getPointFromEvent(event);
+		}
+
+		// We save the original values from the viewBox
+		var viewBox = svg.viewBox.baseVal;
+
+		// Function called by the event listeners when user start moving/dragging
+		function onPointerMove (event) {
+			// Only run this function if the pointer is down
+			if (!isPointerDown) {
+				return;
+			}
+			// This prevent user to do a selection on the page
+			event.preventDefault();
+
+			// Get the pointer position as an SVG Point
+			var pointerPosition = getPointFromEvent(event);
+
+			// Update the viewBox variable with the distance from origin and current position
+			// We don't need to take care of a ratio because this is handled in the getPointFromEvent function
+			viewBox.x -= (pointerPosition.x - pointerOrigin.x);
+			viewBox.y -= (pointerPosition.y - pointerOrigin.y);
+		}
+
+		function onPointerUp() {
+			// The pointer is no longer considered as down
+			isPointerDown = false;
+		}
+	})
 </script>
 
 {#each countries as country}
@@ -47,9 +146,9 @@
 
 
 <style>
-	#container{
+	#container {
 		border: 1px solid blue;
-		overflow: scroll;
+		overflow: hidden;
 		width: 70%;
 		height: 70%;
 		left: 5%;
@@ -57,14 +156,18 @@
 		position: relative;
 	}
 
-	g{
+	#map {
+		width: 100%;
+	}
+
+	g {
 		pointer-events: none;
 	}
 </style>
 <h1>mapScale = {mapScale}</h1>
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div id="container" on:click={onClick}>
-	<svg id="map"class="map" xmlns="http://www.w3.org/2000/svg" version="1.1" width="{2754 * mapScale}" height="{1398 * mapScale}" viewBox="0 0 2800 1400" >
+<div id="container">
+	<svg id="map"class="map" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 2800 1400">
 
 		<style id="style_css_sheet" type="text/css">
 
