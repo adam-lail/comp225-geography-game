@@ -6,9 +6,6 @@
 
 	import { chooseEndCountries } from './path_algorithm.js'
 
-	let chooseEndCountriesVariable = new chooseEndCountries()
-
-	countries.push(chooseEndCountriesVariable[0], chooseEndCountriesVariable[1])
 
 	// $: zoomedIn = false;
 	// $: innerWidth = window.innerWidth;
