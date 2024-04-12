@@ -18,15 +18,17 @@
 	// from https://stackoverflow.com/questions/76150884/how-to-use-the-mouse-wheel-to-zoom-on-an-svg-using-the-viewbox
 	window.addEventListener("DOMContentLoaded", (event) => {
 		const svg = document.querySelector('svg');
+		console.log(svg)
 		// zooming
 		svg.onwheel = function (event) {
 			event.preventDefault();
-
+			console.log(event.deltaY);
 
 			// set the scaling factor (and make sure it's at least 10%)
 			let scale = event.deltaY / 1000;
 			if(event.deltaY != 0){
 				scale = Math.abs(scale) < .1 ? .1 * event.deltaY / Math.abs(event.deltaY) : scale;
+				console.log(scale);
 
 				// get point in SVG space
 				let pt = new DOMPoint(event.clientX, event.clientY);

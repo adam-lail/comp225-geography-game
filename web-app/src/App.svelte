@@ -18,7 +18,7 @@
 	
 	var isTherePath = false;
 
-	var homeScreen = true;
+	// var homeScreen = true;
 	
 	const start1 = chooseEndCountriesFunction[0]
 	
@@ -55,26 +55,24 @@
 
 </script>
 
-{#if homeScreen}
+<!-- {#if homeScreen}
 	<label for = "title"> Geography Game </label>
 	<button type="button" on:click={() => homeScreen=false}> Start </button>
+{/if} -->
+
+<label for = "country"> Country: </label>
+<input type="text" id="country" name="country" placeholder="Sudan">
+<button type="button" on:click="{displayUserCountry}"> Submit </button>
+
+<AutoComplete items={Object.keys(countriesHashMap)}/>
+
+{#if isTherePath}
+	<p>You made a path!</p>
+{:else if !isTherePath}
+	<p>Keep trying to make a path!</p>
 {/if}
 
-{#if !homeScreen}
-	<label for = "country"> Country: </label>
-	<input type="text" id="country" name="country" placeholder="Sudan">
-	<button type="button" on:click="{displayUserCountry}"> Submit </button>
-
-	<AutoComplete items={Object.keys(countriesHashMap)}/>
-
-	{#if isTherePath}
-		<p>You made a path!</p>
-	{:else if !isTherePath}
-		<p>Keep trying to make a path!</p>
-	{/if}
-
-	<Map countries={countries} />
-{/if}
+<Map countries={countries} />
 
 
 
