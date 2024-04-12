@@ -5,7 +5,7 @@ import countriesHashMap from './country_codes.js'
 /* ----PATH CHECKING FUNCTIONS---- */
 
 // function based on this pseudocode/tutorial: https://yuminlee2.medium.com/breadth-first-search-bfs-algorithm-b93ef5258c4d#:~:text=BFS%20can%20be%20used%20to,level%20neighbors%2C%20and%20so%20on.
-function bfs(country1, country2) {
+export function bfs(country1, country2) {
     var queue = []
     queue.push(country1)
     var visited = {}
@@ -97,25 +97,5 @@ function getRandomInt(min, max) {
     const maxFloored = Math.floor(max);
     return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
 }
-
-
-
-/* ----PRINT STATEMENT TESTS---- */
-
-// console.log(bfs("es", "pl")) //yes
-// console.log(bfs("es", "us")) //no
-// console.log(bfs("ad", "fr")) //yes
-// console.log(bfs("ca", "br")) //yes
-// console.log(bfs("au", "id")) //no
-// console.log(bfs("ad", "ad")) //yes
-
-// var countries = ["es", "pl", "de", "pt", "ad", "fr"]
-// console.log(bfs_with_user_countries("es", "pl", countries))
-// var countries2 = ["es", "pl", "us"]
-// console.log(bfs_with_user_countries("es", "pl", countries2))
-
-// console.log(getRandomCountry())
-
-console.log(chooseEndCountries())
 
 
