@@ -7,14 +7,6 @@
 	import { chooseEndCountries } from './path_algorithm.js'
 
 
-	// $: zoomedIn = false;
-	// $: innerWidth = window.innerWidth;
-	// $: innerHeight = window.innerHeight;
-	$: mapScale = 1;
-	// $: viewWidth = 100;
-	// $: viewHeight = 50;
-
-
 	// from https://stackoverflow.com/questions/76150884/how-to-use-the-mouse-wheel-to-zoom-on-an-svg-using-the-viewbox
 	window.addEventListener("DOMContentLoaded", (event) => {
 		const svg = document.querySelector('svg');
@@ -151,10 +143,10 @@
 	#container {
 		border: 1px solid blue;
 		overflow: hidden;
-		width: 70%;
-		height: 70%;
+		width: 90%;
+		height: 90%;
 		left: 5%;
-		top: 10%;
+		top: 1%;
 		position: relative;
 	}
 
@@ -166,7 +158,6 @@
 		pointer-events: none;
 	}
 </style>
-<h1>mapScale = {mapScale}</h1>
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div id="container">
 	<svg id="map"class="map" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 2800 1400">
