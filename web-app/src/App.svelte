@@ -53,6 +53,14 @@
 		}
 	}
 
+	function reset() {
+		chooseEndCountriesFunction = new chooseEndCountries();
+		const start1 = chooseEndCountriesFunction[0];
+		const start2 = chooseEndCountriesFunction[1];
+		countries = [];
+		countries.push(start1, start2);
+	}
+
 </script>
 
 <!-- {#if homeScreen}
@@ -63,6 +71,7 @@
 <label for = "country"> Country: </label>
 <input type="text" id="country" name="country" placeholder="Sudan">
 <button type="button" on:click="{displayUserCountry}"> Submit </button>
+<button type="button" on:click="{reset}"> Reset</button>
 
 <AutoComplete items={Object.keys(countriesHashMap)}/>
 
