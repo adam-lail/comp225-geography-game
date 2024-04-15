@@ -4,7 +4,9 @@
 	export let countries;
 
 
-	import { chooseEndCountries } from './path_algorithm.js'
+	import { bfs, chooseEndCountries } from './path_algorithm.js'
+
+	import { bfs_with_user_countries } from './path_algorithm.js'
 
 
 	// from https://stackoverflow.com/questions/76150884/how-to-use-the-mouse-wheel-to-zoom-on-an-svg-using-the-viewbox
@@ -137,6 +139,24 @@
 	{/if}
 
 {/each}
+
+
+{#if bfs_with_user_countries(countries[0], countries[1], countries)}
+
+	{#each countries as country}
+
+		{#if country != countries[0] && country != countries[1]}
+
+			{@html "<style> ." + country + " { fill: green !important; pointer-events: auto !important; } <\/style>"}
+
+		{/if}
+
+	{/each}
+
+{/if}
+
+
+
 
 
 <style>

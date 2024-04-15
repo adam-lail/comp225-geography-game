@@ -15,13 +15,10 @@
 	let chooseEndCountriesFunction = new chooseEndCountries()
 
 	let countries = [];
-	let selectedCountries;
 
 	var bfs = false;
 	
 	var isTherePath = false;
-
-	let modal = false;
 
 	// var homeScreen = true;
 	
@@ -82,10 +79,21 @@
 <AutoComplete items={Object.keys(countriesHashMap)}/>
 
 {#if isTherePath}
-	<p>You made a path! It took you {countries.length - 2} guesses</p>
+	{#if (countries.length-2) === 1}
+		<div >
+			<h1 style="font-size:170%; margin-left: 10px; color: green">You made a path! It took you {countries.length - 2} guess.</h1>
+		</div>
+	{:else}
+		<div >
+			<h1 style="font-size:170%; margin-left: 10px; color: green">You made a path! It took you {countries.length - 2} guesses.</h1>
+		</div>
+	{/if}
 
 {:else if !isTherePath}
-	<p>Keep trying to make a path!</p>
+	<div >
+		<h1 style="font-size:170%; margin-left: 10px;">Keep trying to make a path!</h1>
+	</div>
+		
 {/if}
 
 <Map countries={countries} />
