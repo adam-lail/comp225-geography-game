@@ -3,7 +3,7 @@
 
 	import Map from './Map.svelte'
 
-	import { Button, Modal } from 'flowbite-svelte'
+	//import { Button, Modal } from 'flowbite-svelte'
 	//npm i -D flowbite-svelte flowbite
 
 	import countriesHashMap from './country_codes.js'
@@ -64,6 +64,7 @@
 		const start2 = chooseEndCountriesFunction[1];
 		countries = [];
 		countries.push(start1, start2);
+		isTherePath = false;
 	}
 
 </script>
@@ -81,13 +82,7 @@
 <AutoComplete items={Object.keys(countriesHashMap)}/>
 
 {#if isTherePath}
-	<p>You made a path!</p>
-
-	<Button on:click={() => (modal = true)}>See stats</Button>
-	<Modal bind:open={modal}>
-		<p>You made a path!</p>
-		<p>It took you {countries.length - 2} guesses</p>
-	</Modal>
+	<p>You made a path! It took you {countries.length - 2} guesses</p>
 
 {:else if !isTherePath}
 	<p>Keep trying to make a path!</p>
