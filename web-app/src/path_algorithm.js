@@ -69,7 +69,7 @@ export function chooseEndCountries() {
     var country1 = ""
     var country2 = ""
     var arr = [country1, country2]
-    while (!(bfs(country1, country2) && (country1 != country2))) {
+    while (!(bfs(country1, country2) && (country1 != country2) && !(un_borders[country1].includes(country2)))) {
         country1 = getRandomCountry()
         country2 = getRandomCountry()
         arr = [country1, country2]
