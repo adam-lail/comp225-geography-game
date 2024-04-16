@@ -3,9 +3,6 @@
 
 	import Map from './Map.svelte'
 
-	//import { Button, Modal } from 'flowbite-svelte'
-	//npm i -D flowbite-svelte flowbite
-
 	import countriesHashMap from './country_codes.js'
 
 	import { chooseEndCountries } from './path_algorithm.js'
@@ -20,8 +17,6 @@
 	var bfs = false;
 	
 	var isTherePath = false;
-
-	// var homeScreen = true;
 	
 	const start1 = chooseEndCountriesFunction[0]
 	
@@ -40,15 +35,8 @@
 	};
 
 	function zoomIntoView(countryCode) {
-		var currentBBox = document.getElementById("map").getBBox();
-		console.log(currentBBox);
 		var boundingBox = document.getElementById(countryCode).getBBox();
-		// var centerPoint = new Object();
-		// centerPoint.x = boundingBox.x + (boundingBox.width / 2);
-		// centerPoint.y = boundingBox.y + (boundingBox.height / 2);
-		// console.log(centerPoint);
-		var newView = `${boundingBox.x - (boundingBox.width * 3 / 2)} ${boundingBox.y - (boundingBox.height / 2)} ${boundingBox.width * 4} ${500000}`;
-		console.log(newView);
+		var newView = `${boundingBox.x - (boundingBox.width * 4 / 2)} ${boundingBox.y - (boundingBox.height / 2)} ${boundingBox.width * 5} ${500000}`;
 		const svg = document.getElementById("map");
 		svg.setAttribute("viewBox", newView);
 	}
@@ -75,11 +63,6 @@
 	}
 
 </script>
-
-<!-- {#if homeScreen}
-	<label for = "title"> Geography Game </label>
-	<button type="button" on:click={() => homeScreen=false}> Start </button>
-{/if} -->
 
 <label for = "country"> Country: </label>
 <input type="text" id="country" name="country" placeholder="Sudan">

@@ -176,9 +176,8 @@
 		border: 1px solid blue;
 		overflow: hidden;
 		width: 90%;
-		height: 85%;
+		height: 70%;
 		left: 5%;
-		top: 1%;
 		position: relative;
 		padding-bottom: 5%;
 	}
