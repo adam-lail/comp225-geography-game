@@ -69,6 +69,11 @@
 		isTherePath = false;
 	}
 
+	// copied from https://stackoverflow.com/questions/9907419/how-to-get-a-key-in-a-javascript-object-by-its-value
+	function getKeyByValue(object, value) {
+  		return Object.keys(object).find(key => object[key] === value);
+	}
+
 </script>
 
 <!-- {#if homeScreen}
@@ -96,7 +101,7 @@
 
 {:else if !isTherePath}
 	<div >
-		<h1 style="font-size:170%; margin-left: 10px;">Keep trying to make a path!</h1>
+		<h1 style="font-size:170%; margin-left: 10px;">Make a path between {getKeyByValue(countriesHashMap, start1)} and {getKeyByValue(countriesHashMap, start2)}!</h1>
 	</div>
 		
 {/if}

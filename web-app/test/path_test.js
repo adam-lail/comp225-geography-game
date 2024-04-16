@@ -2,6 +2,9 @@ import { bfs } from '/Users/kendallsullivan/Documents/GitHub/comp225/comp225-geo
 
 import { bfs_with_user_countries } from '/Users/kendallsullivan/Documents/GitHub/comp225/comp225-geography-game/web-app/src/path_algorithm.js'
 
+import { bfs_shortest_path } from '/Users/kendallsullivan/Documents/GitHub/comp225/comp225-geography-game/web-app/src/path_algorithm.js'
+
+import { bfs_shortest_path_with_user_countries } from '/Users/kendallsullivan/Documents/GitHub/comp225/comp225-geography-game/web-app/src/path_algorithm.js'
 
 /* ----MANUAL PRINT STATEMENT TESTS---- */
 
@@ -20,4 +23,11 @@ countries = ["es", "pl", "us"]
 console.log(bfs_with_user_countries("es", "pl", countries)) //expected false
 countries = ["es"]
 console.log(bfs_with_user_countries("es", "es", countries)) //expected true
+
+console.log()
+
+console.log(bfs_shortest_path("es", "pl"))
+
+var countries = ["es", "pl", "de", "pt", "ad", "fr"]
+console.log(bfs_shortest_path_with_user_countries("es", "pl", countries)) //expected true
 

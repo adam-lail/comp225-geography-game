@@ -3,8 +3,8 @@ import un_borders from './un_borders.js'
 import countriesHashMap from './country_codes.js'
 
 /* ----PATH CHECKING FUNCTIONS---- */
+// functions based on this pseudocode/tutorial: https://yuminlee2.medium.com/breadth-first-search-bfs-algorithm-b93ef5258c4d#:~:text=BFS%20can%20be%20used%20to,level%20neighbors%2C%20and%20so%20on.
 
-// function based on this pseudocode/tutorial: https://yuminlee2.medium.com/breadth-first-search-bfs-algorithm-b93ef5258c4d#:~:text=BFS%20can%20be%20used%20to,level%20neighbors%2C%20and%20so%20on.
 export function bfs(country1, country2) {
     var queue = []
     queue.push(country1)
@@ -56,6 +56,58 @@ export function bfs_with_user_countries(country1, country2, countries) {
 }
 
 
+export function bfs_shortest_path(country1, country2) {
+    var queue = []
+    queue.push(country1)
+    var visited = {}
+    visited[country1] = null // keys are nodes (countries), values are previous node
+    while (queue.length != 0) {
+        var curr = queue[0]
+        removeItemOnce(queue, queue[0])
+        if (curr == country2) {
+            break
+        }
+        if (un_borders[curr] == null) {
+            continue
+        } else {
+            un_borders[curr].forEach(neighbor => {
+                if (!(neighbor in visited)) {
+                    visited[neighbor] = curr
+                    queue.push(neighbor)
+                }
+            })
+        }
+    }
+    return get_path(visited, country2)
+}
+
+
+export function bfs_shortest_path_with_user_countries(country1, country2, countries) {
+    var queue = []
+    queue.push(country1)
+    var visited = {}
+    visited[country1] = null // keys are nodes (countries), values are previous node
+    while (queue.length != 0) {
+        var curr = queue[0]
+        removeItemOnce(queue, queue[0])
+        if (curr == country2) {
+            break
+        }
+        if (un_borders[curr] == null) {
+            continue
+        } else {
+            un_borders[curr].forEach(neighbor => {
+                if (!(neighbor in visited) && countries.includes(neighbor)) {
+                    visited[neighbor] = curr
+                    queue.push(neighbor)
+                }
+            })
+        }
+    }
+    return get_path(visited, country2)
+}
+
+
 /* ----GET END COUNTRIES FUNCTIONS---- */
 
 
@@ -98,4 +150,14 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
 }
 
+// function based on this pseudocode/tutorial: https://yuminlee2.medium.com/breadth-first-search-bfs-algorithm-b93ef5258c4d#:~:text=BFS%20can%20be%20used%20to,level%20neighbors%2C%20and%20so%20on.
+function get_path(visited, country2) {
+    var path = []
+    var curr = country2
+    while (curr != null) {
+        path.push(curr)
+        curr = visited[curr]
+    }
+    return path.reverse()
+}
 

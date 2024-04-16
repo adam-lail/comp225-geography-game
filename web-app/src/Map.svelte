@@ -8,6 +8,9 @@
 
 	import { bfs_with_user_countries } from './path_algorithm.js'
 
+	import { bfs_shortest_path_with_user_countries } from './path_algorithm.js';
+
+	var shortest_path = []
 
 	// from https://stackoverflow.com/questions/76150884/how-to-use-the-mouse-wheel-to-zoom-on-an-svg-using-the-viewbox
 	window.addEventListener("DOMContentLoaded", (event) => {
@@ -140,7 +143,19 @@
 
 {#if bfs_with_user_countries(countries[0], countries[1], countries)}
 
-	{#each countries as country}
+	{shortest_path = bfs_shortest_path_with_user_countries(countries[0], countries[1], countries)}
+	
+	{#each shortest_path as country}
+
+		{#if country != shortest_path[0] && country != shortest_path[shortest_path.length-1]}
+
+			{@html "<style> ." + country + " { fill: green !important; pointer-events: auto !important; } <\/style>"}
+
+		{/if}
+
+	{/each}
+
+	<!-- {#each countries as country}
 
 		{#if country != countries[0] && country != countries[1]}
 
@@ -148,7 +163,7 @@
 
 		{/if}
 
-	{/each}
+	{/each} -->
 
 {/if}
 
