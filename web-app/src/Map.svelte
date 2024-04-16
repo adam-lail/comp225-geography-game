@@ -16,13 +16,10 @@
 		// zooming
 		svg.onwheel = function (event) {
 			event.preventDefault();
-			console.log(event.deltaY);
-
 			// set the scaling factor (and make sure it's at least 10%)
 			let scale = event.deltaY / 1000;
 			if(event.deltaY != 0){
 				scale = Math.abs(scale) < .1 ? .1 * event.deltaY / Math.abs(event.deltaY) : scale;
-				console.log(scale);
 
 				// get point in SVG space
 				let pt = new DOMPoint(event.clientX, event.clientY);
@@ -164,10 +161,11 @@
 		border: 1px solid blue;
 		overflow: hidden;
 		width: 90%;
-		height: 90%;
+		height: 85%;
 		left: 5%;
 		top: 1%;
 		position: relative;
+		padding-bottom: 5%;
 	}
 
 	#map {
@@ -180,7 +178,7 @@
 </style>
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div id="container">
-	<svg id="map"class="map" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 2800 1400">
+	<svg id="map"class="map" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 2800 100000">
 
 		<style id="style_css_sheet" type="text/css">
 

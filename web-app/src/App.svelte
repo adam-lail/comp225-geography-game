@@ -11,6 +11,7 @@
 	import { chooseEndCountries } from './path_algorithm.js'
 
 	import { bfs_with_user_countries } from './path_algorithm.js'
+    import { contenteditable_truthy_values } from 'svelte/internal';
 
 	let chooseEndCountriesFunction = new chooseEndCountries()
 
@@ -33,17 +34,21 @@
 		const countryid = countriesHashMap[country]
 		if(countryid) {
 			countries = [...countries, countryid];
-
-			// scrollIntoView kinda works, should find alternative.
-			// document.getElementById(countryid).scrollIntoView({ behavior: "smooth", block: "center", inline: "center" })
 			zoomIntoView(countryid);
 			checkBFS()
 		}
 	};
 
 	function zoomIntoView(countryCode) {
+		var currentBBox = document.getElementById("map").getBBox();
+		console.log(currentBBox);
 		var boundingBox = document.getElementById(countryCode).getBBox();
-		var newView = `${boundingBox.x} ${boundingBox.y} ${boundingBox.width} ${boundingBox.height}`;
+		// var centerPoint = new Object();
+		// centerPoint.x = boundingBox.x + (boundingBox.width / 2);
+		// centerPoint.y = boundingBox.y + (boundingBox.height / 2);
+		// console.log(centerPoint);
+		var newView = `${boundingBox.x - (boundingBox.width * 3 / 2)} ${boundingBox.y - (boundingBox.height / 2)} ${boundingBox.width * 4} ${500000}`;
+		console.log(newView);
 		const svg = document.getElementById("map");
 		svg.setAttribute("viewBox", newView);
 	}
