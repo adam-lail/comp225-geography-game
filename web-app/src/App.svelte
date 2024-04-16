@@ -10,6 +10,8 @@
 	import { bfs_with_user_countries } from './path_algorithm.js'
     import { contenteditable_truthy_values } from 'svelte/internal';
 
+	import { bfs_shortest_path } from './path_algorithm'
+
 	let chooseEndCountriesFunction = new chooseEndCountries()
 
 	let countries = [];
@@ -63,6 +65,19 @@
   		return Object.keys(object).find(key => object[key] === value);
 	};
 
+	function names_of_shortest_path() {
+		var names = ""
+		var path = bfs_shortest_path(start1, start2)
+		for(const id of path) {
+			if (path[path.length - 1] != id) {
+				names = names + getKeyByValue(countriesHashMap, id) + " --> "
+			} else {
+				names = names + getKeyByValue(countriesHashMap, id)
+			}
+		}
+		return names
+	}
+
 </script>
 
 {#if isTherePath}
@@ -73,6 +88,10 @@
 	{:else}
 		<div >
 			<h1 style="font-size:170%; margin-left: 10px; color: green">You made a path! It took you {countries.length - 2} guesses.</h1>
+		</div>
+		<div>
+			<h1 style="font-size:90%; margin-left: 10px"> The shortest possible path is {bfs_shortest_path(start1, start2).length - 2} countries.
+				A possible shortest path is {names_of_shortest_path()}<h1>
 		</div>
 	{/if}
 

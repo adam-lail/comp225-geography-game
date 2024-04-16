@@ -10,7 +10,11 @@
 
 	import { bfs_shortest_path_with_user_countries } from './path_algorithm.js';
 
-	var shortest_path = []
+	import un_countries from './country_codes.js'
+
+	//var shortest_path = []
+
+	const elements = []
 
 	// from https://stackoverflow.com/questions/76150884/how-to-use-the-mouse-wheel-to-zoom-on-an-svg-using-the-viewbox
 	window.addEventListener("DOMContentLoaded", (event) => {
@@ -127,51 +131,44 @@
 </script>
 
 {#each countries as country}
-
 	{#if country === countries[0] || country === countries[1]}
-
 		{@html "<style> ." + country + " { fill: blue !important; pointer-events: auto !important; } <\/style>"}
-
 	{:else}
-
 		{@html "<style> ." + country + " { fill: red !important; pointer-events: auto !important; } <\/style>"}
-
 	{/if}
-
 {/each}
 
-
 {#if bfs_with_user_countries(countries[0], countries[1], countries)}
-
-	{shortest_path = bfs_shortest_path_with_user_countries(countries[0], countries[1], countries)}
-	
+	{@const shortest_path = bfs_shortest_path_with_user_countries(countries[0], countries[1], countries)}
 	{#each shortest_path as country}
-
 		{#if country != shortest_path[0] && country != shortest_path[shortest_path.length-1]}
-
 			{@html "<style> ." + country + " { fill: green !important; pointer-events: auto !important; } <\/style>"}
-
 		{/if}
-
 	{/each}
-
 	<!-- {#each countries as country}
-
 		{#if country != countries[0] && country != countries[1]}
-
 			{@html "<style> ." + country + " { fill: green !important; pointer-events: auto !important; } <\/style>"}
-
 		{/if}
-
 	{/each} -->
-
 {/if}
 
 
-
+	<!-- {elements = document.getElementsByClassName("circlexx")}
+	{#each elements as element}
+		{@html "<style> ." + element + " { fill: green !important; pointer-events: auto !important; } <\/style>"}
+	{/each} -->
 
 
 <style>
+
+	
+	#ps .circlexx {
+		opacity: 0;
+		fill: #c0c0c0;
+		stroke: #000000;
+		stroke-width: 0.5;
+	}
+
 	#container {
 		border: 1px solid blue;
 		overflow: hidden;
