@@ -81,6 +81,7 @@
 </script>
 
 {#if isTherePath}
+	{@html "<style> .landxx {pointer-events: auto !important; } <\/style>"}	
 	{#if (countries.length-2) === 1}
 		<div >
 			<h1 style="font-size:170%; margin-left: 10px; color: green">You made a path! It took you {countries.length - 2} guess.</h1>
