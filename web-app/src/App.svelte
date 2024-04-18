@@ -86,13 +86,33 @@
 		<div >
 			<h1 style="font-size:170%; margin-left: 10px; color: green">You made a path! It took you {countries.length - 2} guess.</h1>
 		</div>
+		{#if (bfs_shortest_path(start1, start2).length - 2) === 1}
+			<div>
+				<h1 style="font-size:90%; margin-left: 10px"> The shortest possible path is 1 country.<h1>
+			</div>
+		{:else}
+			<div>
+				<h1 style="font-size:90%; margin-left: 10px"> The shortest possible path is {bfs_shortest_path(start1, start2).length - 2} countries.<h1>
+			</div>
+		{/if}
+		<div>
+			<h1 style="font-size:90%; margin-left: 10px"> Possible shortest path: {names_of_shortest_path()}<h1>
+		</div>
 	{:else}
 		<div >
 			<h1 style="font-size:170%; margin-left: 10px; color: green">You made a path! It took you {countries.length - 2} guesses.</h1>
 		</div>
+		{#if (bfs_shortest_path(start1, start2).length - 2) === 1}
+			<div>
+				<h1 style="font-size:90%; margin-left: 10px"> The shortest possible path is 1 country.<h1>
+			</div>
+		{:else}
+			<div>
+				<h1 style="font-size:90%; margin-left: 10px"> The shortest possible path is {bfs_shortest_path(start1, start2).length - 2} countries.<h1>
+			</div>
+		{/if}
 		<div>
-			<h1 style="font-size:90%; margin-left: 10px"> The shortest possible path is {bfs_shortest_path(start1, start2).length - 2} countries.
-				A possible shortest path is {names_of_shortest_path()}<h1>
+			<h1 style="font-size:90%; margin-left: 10px"> Possible shortest path: {names_of_shortest_path()}<h1>
 		</div>
 	{/if}
 
