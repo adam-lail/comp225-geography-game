@@ -127,8 +127,9 @@
 <!-- {#if !isTherePath} -->
 <button type="button" on:click="{addCountry}"> Add </button>
 <!-- {/if} -->
-<button type="button" on:click="{reset}"> New Game</button>
-
+<span style = "float: right;">
+	<button type="button" on:click="{reset}"> New Game</button>
+</span>
 
 <Map countries={countries} />
 
