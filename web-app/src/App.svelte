@@ -123,10 +123,11 @@
 		
 {/if}
 
-<AutoComplete items={Object.keys(countriesHashMap)} bind:selectedItem={userSelectedCountry}/>
+<AutoComplete items={Object.keys(countriesHashMap)} bind:selectedItem={userSelectedCountry} placeholder="Enter a country" showClear=true/>
+<!-- {#if !isTherePath} -->
 <button type="button" on:click="{addCountry}"> Add </button>
+<!-- {/if} -->
 <button type="button" on:click="{reset}"> New Game</button>
-
 
 
 <Map countries={countries} />
