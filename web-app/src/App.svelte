@@ -22,9 +22,9 @@
 	
 	var isTherePath = false;
 	
-	const start1 = chooseEndCountriesFunction[0]
+	var start1 = chooseEndCountriesFunction[0]
 	
-	const start2 = chooseEndCountriesFunction[1]
+	var start2 = chooseEndCountriesFunction[1]
 		
 	countries.push(start1, start2)
 
@@ -53,8 +53,8 @@
 
 	function reset() {
 		chooseEndCountriesFunction = new chooseEndCountries();
-		const start1 = chooseEndCountriesFunction[0];
-		const start2 = chooseEndCountriesFunction[1];
+		start1 = chooseEndCountriesFunction[0];
+		start2 = chooseEndCountriesFunction[1];
 		countries = [];
 		countries.push(start1, start2);
 		isTherePath = false;
@@ -125,7 +125,7 @@
 
 <AutoComplete items={Object.keys(countriesHashMap)} bind:selectedItem={userSelectedCountry}/>
 <button type="button" on:click="{addCountry}"> Add </button>
-<!-- <button type="button" on:click="{reset}"> Reset</button> -->
+<button type="button" on:click="{reset}"> New Game</button>
 
 
 
