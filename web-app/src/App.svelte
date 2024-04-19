@@ -31,9 +31,11 @@
 	function addCountry() {
 		const countryid = countriesHashMap[userSelectedCountry];
 		if(countryid) {
-			countries = [...countries, countryid];
-			zoomIntoView(countryid);
-			checkBFS()
+			if (!(countries.includes(countryid))) {
+				countries = [...countries, countryid];
+				zoomIntoView(countryid);
+				checkBFS()
+			}
 		}
 	};
 
