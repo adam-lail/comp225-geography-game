@@ -12,6 +12,10 @@
 
 	import { bfs_shortest_path } from './path_algorithm'
 
+	import Modal from './Modal.svelte';
+
+	let showModal = false;
+
 	let chooseEndCountriesFunction = new chooseEndCountries()
 
 	let countries = [];
@@ -132,6 +136,32 @@
 <span style = "float: right;">
 	<button type="button" on:click="{reset}"> New Game</button>
 </span>
+
+
+<!-- code modified from https://svelte.dev/examples/modal -->
+<button on:click={() => (showModal = true)}> ? </button>
+
+<Modal bind:showModal>
+	<h2 slot="header">
+		Help Guide
+	</h2>
+
+	<ul class = "direction-list">
+		<h3>Usability</h3>
+		<li>Hover over a highlighted country to see its name</li>
+		<li>Scroll to zoom</li>
+		<li>Click and hold to drag map</li>
+
+		<h3>Geographical Conditions</h3>
+		<li>Only UN-recognized countries are used</li>
+		<li>Borders include those between a country's enclaves and exclaves, 
+			with the exception of French Guiana to avoid paths from North/South America
+			to Africa/Europe/Asia
+		</li>
+	</ul>
+
+</Modal>
+
 
 <Map countries={countries} />
 
