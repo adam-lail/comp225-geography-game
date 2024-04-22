@@ -124,12 +124,12 @@
 
 {:else if !isTherePath}
 	<div >
-		<h1 style="font-size:170%; margin-left: 10px;">Make a path between {getKeyByValue(countriesHashMap, start1)} and {getKeyByValue(countriesHashMap, start2)}!</h1>
+		<h1 style="font-size:170%; margin-left: 10px;">Make the shortest path between {getKeyByValue(countriesHashMap, start1)} and {getKeyByValue(countriesHashMap, start2)}!</h1>
 	</div>
 		
 {/if}
 
-<AutoComplete items={Object.keys(countriesHashMap)} bind:selectedItem={userSelectedCountry} placeholder="Enter a country" showClear=true/>
+<AutoComplete items={Object.keys(countriesHashMap)} bind:selectedItem={userSelectedCountry} placeholder="Add a country to your path" showClear=true/>
 <!-- {#if !isTherePath} -->
 <button type="button" on:click="{addCountry}"> Add </button>
 <!-- {/if} -->
@@ -137,9 +137,10 @@
 	<button type="button" on:click="{reset}"> New Game</button>
 </span>
 
-
-<!-- code modified from https://svelte.dev/examples/modal -->
-<button on:click={() => (showModal = true)}> ? </button>
+<span style = "padding-left:1px;"> 
+	<!-- code modified from https://svelte.dev/examples/modal -->
+	<button on:click={() => (showModal = true)} style = "background-color: yellow;"> ? </button>
+</span>
 
 <Modal bind:showModal>
 	<h2 slot="header">
@@ -154,9 +155,8 @@
 
 		<h3>Geographical Conditions</h3>
 		<li>Only UN-recognized countries are used</li>
-		<li>Borders include those between a country's enclaves and exclaves, 
-			with the exception of French Guiana to avoid paths from North/South America
-			to Africa/Europe/Asia
+		<li>Includes borders with a country's enclaves and exclaves, 
+			with the exception of French Guiana
 		</li>
 	</ul>
 
