@@ -84,11 +84,37 @@
 		return names
 	}
 
+	//logic in progress
+	function names_of_user_countries() {
+		var names = ""
+		for(const id of countries) {
+			if (countries[countries.length - 1] != id) {
+				names = names + getKeyByValue(countriesHashMap, id) + " --> "
+			} else {
+				names = names + getKeyByValue(countriesHashMap, id)
+			}
+		}
+		return names
+	}
+
 </script>
 
 {#if isTherePath}
 	{@html "<style> .landxx {pointer-events: auto !important; } <\/style>"}	
-	{#if (countries.length-2) === 1}
+	{#if countries.length === bfs_shortest_path(start1, start2).length}
+		{#if (countries.length-2) === 1}
+			<div >
+				<h1 style="font-size:170%; margin-left: 10px; color: green">You made the shortest possible path! It took you {countries.length - 2} guess. Congrats!</h1>
+			</div>
+		{:else}
+			<div >
+				<h1 style="font-size:170%; margin-left: 10px; color: green">You made the shortest possible path! It took you {countries.length - 2} guesses. Congrats!</h1>
+			</div>
+		{/if}
+		<!-- <div>
+			<h1 style="font-size:90%; margin-left: 10px"> Your path: {names_of_user_countries()}<h1>
+		</div> -->
+	{:else if (countries.length-2) === 1}
 		<div >
 			<h1 style="font-size:170%; margin-left: 10px; color: green">You made a path! It took you {countries.length - 2} guess.</h1>
 		</div>
