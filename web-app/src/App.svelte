@@ -28,6 +28,8 @@
 	var bfs = false;
 	
 	var isTherePath = false;
+
+	var numGuesses = 0;
 	
 	var start1 = chooseEndCountriesFunction[0]
 	
@@ -100,26 +102,33 @@
 		return names
 	}
 
+	function giveUp() {
+		
+	}
+
 </script>
 
 {#if isTherePath}
+	{#if numGuesses === 0}
+		{numGuesses = countries.length}
+	{/if}
 	{@html "<style> .landxx {pointer-events: auto !important; } <\/style>"}	
-	{#if countries.length === bfs_shortest_path(start1, start2).length}
-		{#if (countries.length-2) === 1}
+	{#if numGuesses === bfs_shortest_path(start1, start2).length}
+		{#if (numGuesses-2) === 1}
 			<div >
-				<h1 style="font-size:170%; margin-left: 10px; color: green">You made the shortest possible path! It took you {countries.length - 2} guess. Congrats!</h1>
+				<h1 style="font-size:170%; margin-left: 10px; color: green">You made the shortest possible path! It took you {numGuesses - 2} guess. Congrats!</h1>
 			</div>
 		{:else}
 			<div >
-				<h1 style="font-size:170%; margin-left: 10px; color: green">You made the shortest possible path! It took you {countries.length - 2} guesses. Congrats!</h1>
+				<h1 style="font-size:170%; margin-left: 10px; color: green">You made the shortest possible path! It took you {numGuesses - 2} guesses. Congrats!</h1>
 			</div>
 		{/if}
 		<!-- <div>
 			<h1 style="font-size:90%; margin-left: 10px"> Your path: {names_of_user_countries()}<h1>
 		</div> -->
-	{:else if (countries.length-2) === 1}
+	{:else if (numGuesses-2) === 1}
 		<div >
-			<h1 style="font-size:170%; margin-left: 10px; color: green">You made a path! It took you {countries.length - 2} guess.</h1>
+			<h1 style="font-size:170%; margin-left: 10px; color: green">You made a path! It took you {numGuesses - 2} guess.</h1>
 		</div>
 		{#if (bfs_shortest_path(start1, start2).length - 2) === 1}
 			<div>
@@ -135,7 +144,7 @@
 		</div>
 	{:else}
 		<div >
-			<h1 style="font-size:170%; margin-left: 10px; color: green">You made a path! It took you {countries.length - 2} guesses.</h1>
+			<h1 style="font-size:170%; margin-left: 10px; color: green">You made a path! It took you {numGuesses - 2} guesses.</h1>
 		</div>
 		{#if (bfs_shortest_path(start1, start2).length - 2) === 1}
 			<div>
@@ -159,10 +168,13 @@
 {/if}
 
 <AutoComplete items={Object.keys(countriesHashMap)} bind:selectedItem={userSelectedCountry} placeholder="Add a country to your path" showClear=true/>
-<!-- {#if !isTherePath} -->
+
 <button type="button" on:click="{addCountry}"> Add </button>
-<!-- {/if} -->
+
 <NewGameButton on:reset={reset} />
+<!-- <span style = "float: right;">
+	<button type="button" on:click="{giveUp}"> Give Up?</button>
+</span> -->
 
 <span style = "padding-left:1px;"> 
 	<!-- code modified from https://svelte.dev/examples/modal -->
