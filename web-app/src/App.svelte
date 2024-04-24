@@ -13,8 +13,11 @@
 	import { bfs_shortest_path } from './path_algorithm'
 
 	import Modal from './Modal.svelte';
+    import NewGameButton from './NewGameButton.svelte';
 
 	let showModal = false;
+
+	let showModal2 = false;
 
 	let chooseEndCountriesFunction = new chooseEndCountries()
 
@@ -133,9 +136,7 @@
 <!-- {#if !isTherePath} -->
 <button type="button" on:click="{addCountry}"> Add </button>
 <!-- {/if} -->
-<span style = "float: right;">
-	<button type="button" on:click="{reset}"> New Game</button>
-</span>
+<NewGameButton on:reset={reset} />
 
 
 <!-- code modified from https://svelte.dev/examples/modal -->

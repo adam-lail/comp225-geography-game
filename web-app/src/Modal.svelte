@@ -4,7 +4,7 @@
 <script>
 	export let showModal; // boolean
 
-	let dialog; // HTMLDialogElement
+	export let dialog; // HTMLDialogElement
 
 	$: if (dialog && showModal) dialog.showModal();
 </script>
