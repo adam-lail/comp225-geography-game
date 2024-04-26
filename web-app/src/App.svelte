@@ -8,6 +8,7 @@
 	import { chooseEndCountries } from './path_algorithm.js'
 
 	import { bfs_with_user_countries } from './path_algorithm.js'
+	
     import { contenteditable_truthy_values } from 'svelte/internal';
 
 	import { bfs_shortest_path } from './path_algorithm'
@@ -106,6 +107,13 @@
 		
 	}
 
+	const button = document.getElementById('addButton');
+  	document.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter' || event.key === 'Enter') {
+      addCountry();
+    }
+  	});
+
 </script>
 
 {#if isTherePath}
@@ -170,6 +178,8 @@
 <AutoComplete items={Object.keys(countriesHashMap)} bind:selectedItem={userSelectedCountry} placeholder="Add a country to your path" showClear=true/>
 
 <button type="button" on:click="{addCountry}"> Add </button>
+
+
 
 <NewGameButton on:reset={reset} />
 <!-- <span style = "float: right;">
