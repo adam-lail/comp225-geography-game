@@ -132,8 +132,14 @@
 
 {#each countries as country}
 	{#if country === countries[0] || country === countries[1]}
+		{#if document.querySelectorAll("#" + country + " .circlexx").length > 0}
+			{@html "<style> #" + country + " .circlexx { opacity: 0.5; fill: blue !important; pointer-events: auto !important; } <\/style>"}
+		{/if}
 		{@html "<style> ." + country + " { fill: blue !important; pointer-events: auto !important; } <\/style>"}
 	{:else}
+		{#if document.querySelectorAll("#" + country + " .circlexx").length > 0}
+			{@html "<style> #" + country + " .circlexx { opacity: 0.5; fill: red !important; pointer-events: auto !important; } <\/style>"}
+		{/if}
 		{@html "<style> ." + country + " { fill: red !important; pointer-events: auto !important; } <\/style>"}
 	{/if}
 {/each}
@@ -142,6 +148,9 @@
 	{@const shortest_path = bfs_shortest_path_with_user_countries(countries[0], countries[1], countries)}
 	{#each shortest_path as country}
 		{#if country != shortest_path[0] && country != shortest_path[shortest_path.length-1]}
+			{#if document.querySelectorAll("#" + country + " .circlexx").length > 0}
+				{@html "<style> #" + country + " .circlexx { opacity: 0.5; fill: green !important; pointer-events: auto !important; } <\/style>"}
+			{/if}
 			{@html "<style> ." + country + " { fill: green !important; pointer-events: auto !important; } <\/style>"}
 		{/if}
 	{/each}
@@ -153,21 +162,7 @@
 {/if}
 
 
-	<!-- {elements = document.getElementsByClassName("circlexx")}
-	{#each elements as element}
-		{@html "<style> ." + element + " { fill: green !important; pointer-events: auto !important; } <\/style>"}
-	{/each} -->
-
-
 <style>
-
-	
-	#ps .circlexx {
-		opacity: 0;
-		fill: #c0c0c0;
-		stroke: #000000;
-		stroke-width: 0.5;
-	}
 
 	#container {
 		border: 1px solid blue;
