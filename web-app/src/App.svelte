@@ -234,9 +234,9 @@
 		</li>
 
 		<h3>Color Key</h3>
-		<li style="line-height:100%"><p style="color:blue">Blue:</p> The starting and ending countries.</li>
-		<li style="line-height:100%"><p style="color:red">Red:</p> The countries that you have guessed.</li>
-		<li style="line-height:100%"><p style="color:green">Green:</p> The countries that are part of the shortest final path.</li>
+		<li style="line-height:100%"><span style="color:blue">Blue:</span> The starting and ending countries.</li>
+		<li style="line-height:100%"><span style="color:red">Red:</span> The countries that you have guessed.</li>
+		<li style="line-height:100%"><span style="color:green">Green:</span> The countries that are part of the shortest final path.</li>
 	</ul>
 
 </Modal>
