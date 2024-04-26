@@ -189,7 +189,7 @@
 
 {:else if !isTherePath}
 	<div >
-		<h1 style="font-size:170%; margin-left: 10px;">Try to connect {getKeyByValue(countriesHashMap, start1)} and {getKeyByValue(countriesHashMap, start2)} by their borders in the fewest countries!</h1>
+		<h1 style="font-size:170%; margin-left: 10px;">Try to connect <span style="color: blue">{getKeyByValue(countriesHashMap, start1)}</span> and <span style="color: blue">{getKeyByValue(countriesHashMap, start2)}</span> by their borders in the fewest countries!</h1>
 	</div>
 		
 {/if}
@@ -222,7 +222,8 @@
 
 	<ul class = "direction-list" style="line-height:100%">
 		<h3>Usability</h3>
-		<li>Hover over a highlighted country to see its name</li>
+		<li>Hover over a colored country to see its name, or any country once the game is over</li>
+		<li>All of your guesses do not need to be in your final path</li>
 		<li>Scroll to zoom</li>
 		<li>Click and hold to drag map</li>
 
@@ -235,7 +236,7 @@
 		<h3>Color Key</h3>
 		<li style="line-height:100%"><p style="color:blue">Blue:</p> The starting and ending countries.</li>
 		<li style="line-height:100%"><p style="color:red">Red:</p> The countries that you have guessed.</li>
-		<li style="line-height:100%"><p style="color:green">Green:</p> The countries that are part of the final path.</li>
+		<li style="line-height:100%"><p style="color:green">Green:</p> The countries that are part of the shortest final path.</li>
 	</ul>
 
 </Modal>
