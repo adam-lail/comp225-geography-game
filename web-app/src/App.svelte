@@ -17,8 +17,6 @@
 
 	let showModal = false;
 
-	let showModal2 = false;
-
 	let chooseEndCountriesFunction = new chooseEndCountries()
 
 	let countries = [];
@@ -186,7 +184,7 @@
 		Help Guide
 	</h2>
 
-	<ul class = "direction-list">
+	<ul class = "direction-list" style="line-height:100%">
 		<h3>Usability</h3>
 		<li>Hover over a highlighted country to see its name</li>
 		<li>Scroll to zoom</li>
@@ -197,6 +195,11 @@
 		<li>Includes borders with a country's enclaves and exclaves, 
 			with the exception of French Guiana
 		</li>
+
+		<h3>Color Key</h3>
+		<li style="line-height:100%"><p style="color:blue">Blue:</p> The starting and ending countries.</li>
+		<li style="line-height:100%"><p style="color:red">Red:</p> The countries that you have guessed.</li>
+		<li style="line-height:100%"><p style="color:green">Green:</p> The countries that are part of the final path.</li>
 	</ul>
 
 </Modal>
