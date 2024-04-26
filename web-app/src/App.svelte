@@ -8,12 +8,14 @@
 	import { chooseEndCountries } from './path_algorithm.js'
 
 	import { bfs_with_user_countries } from './path_algorithm.js'
+	
     import { contenteditable_truthy_values } from 'svelte/internal';
 
 	import { bfs_shortest_path } from './path_algorithm'
 
 	import Modal from './Modal.svelte';
     import NewGameButton from './NewGameButton.svelte';
+	import GiveUpButton from './GiveUpButton.svelte';
 
 	let showModal = false;
 
@@ -26,6 +28,8 @@
 	var bfs = false;
 	
 	var isTherePath = false;
+
+	var giveUpBool = false;
 
 	var numGuesses = 0;
 	
@@ -101,17 +105,39 @@
 	}
 
 	function giveUp() {
-		
+		isTherePath = true;
+		giveUpBool = true;
+		const shortestPath = bfs_shortest_path(start1, start2)
+		for(const country of shortestPath) {
+			if (!(countries.includes(country))) {
+				countries = [...countries, country];
+			}
+		}
 	}
+
+	const button = document.getElementById('addButton');
+  	document.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter' || event.key === 'Enter') {
+      addCountry();
+    }
+  	});
 
 </script>
 
 {#if isTherePath}
+	
 	{#if numGuesses === 0}
 		{numGuesses = countries.length}
 	{/if}
 	{@html "<style> .landxx {pointer-events: auto !important; } <\/style>"}	
-	{#if numGuesses === bfs_shortest_path(start1, start2).length}
+	{#if giveUpBool}
+		<div >
+			<h1 style="font-size:170%; margin-left: 10px; color: green">You gave up. Better luck next time!</h1>
+		</div>
+		<div>
+			<h1 style="font-size:90%; margin-left: 10px"> Possible shortest path: {names_of_shortest_path()}<h1>
+		</div>
+	{:else if numGuesses === bfs_shortest_path(start1, start2).length}
 		{#if (numGuesses-2) === 1}
 			<div >
 				<h1 style="font-size:170%; margin-left: 10px; color: green">You made the shortest possible path! It took you {numGuesses - 2} guess. Congrats!</h1>
@@ -165,13 +191,20 @@
 		
 {/if}
 
+
+
 <AutoComplete items={Object.keys(countriesHashMap)} bind:selectedItem={userSelectedCountry} placeholder="Add a country to your path" showClear=true/>
 
 <button type="button" on:click="{addCountry}"> Add </button>
 
+
+
 <NewGameButton on:reset={reset} />
-<!-- <span style = "float: right;">
-	<button type="button" on:click="{giveUp}"> Give Up?</button>
+
+<GiveUpButton on:giveUp={giveUp} />
+
+<!-- <span style = "float: right; padding-right:5px">
+	<button type="button" on:click="{giveUp}"> Give Up</button>
 </span> -->
 
 <span style = "padding-left:1px;"> 
