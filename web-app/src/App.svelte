@@ -189,7 +189,7 @@
 
 {:else if !isTherePath}
 	<div >
-		<h1 style="font-size:170%; margin-left: 10px;">Try to connect {getKeyByValue(countriesHashMap, start1)} and {getKeyByValue(countriesHashMap, start2)} by their borders in the fewest countries!</h1>
+		<h1 style="font-size:170%; margin-left: 10px;">Try to connect <span style="color: blue">{getKeyByValue(countriesHashMap, start1)}</span> and <span style="color: blue">{getKeyByValue(countriesHashMap, start2)}</span> by their borders in the fewest countries!</h1>
 	</div>
 		
 {/if}
