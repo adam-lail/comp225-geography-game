@@ -212,7 +212,7 @@
 
 <span style = "padding-left:1px;"> 
 	<!-- code modified from https://svelte.dev/examples/modal -->
-	<button on:click={() => (showModal = true)} style = "background-color: yellow;"> ? </button>
+	<button on:click={() => (showModal = true)} style = "border-radius: 50%; width: 35px; height: 35px;"> ? </button>
 </span>
 
 <Modal bind:showModal>
