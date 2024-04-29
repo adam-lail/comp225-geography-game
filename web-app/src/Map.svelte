@@ -3,7 +3,6 @@
 
 	export let countries;
 
-
 	import { bfs, chooseEndCountries } from './path_algorithm.js'
 
 	import { bfs_with_user_countries } from './path_algorithm.js'
@@ -11,8 +10,6 @@
 	import { bfs_shortest_path_with_user_countries } from './path_algorithm.js';
 
 	import un_countries from './country_codes.js'
-
-	//var shortest_path = []
 
 	const elements = []
 
@@ -154,11 +151,6 @@
 			{@html "<style> ." + country + " { fill: green !important; pointer-events: auto !important; } <\/style>"}
 		{/if}
 	{/each}
-	<!-- {#each countries as country}
-		{#if country != countries[0] && country != countries[1]}
-			{@html "<style> ." + country + " { fill: green !important; pointer-events: auto !important; } <\/style>"}
-		{/if}
-	{/each} -->
 {/if}
 
 

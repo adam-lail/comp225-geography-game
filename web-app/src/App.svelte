@@ -8,13 +8,13 @@
 	import { chooseEndCountries } from './path_algorithm.js'
 
 	import { bfs_with_user_countries } from './path_algorithm.js'
-	
-    import { contenteditable_truthy_values } from 'svelte/internal';
 
 	import { bfs_shortest_path } from './path_algorithm'
 
 	import Modal from './Modal.svelte';
+
     import NewGameButton from './NewGameButton.svelte';
+
 	import GiveUpButton from './GiveUpButton.svelte';
 
 	let showModal = false;
@@ -39,6 +39,7 @@
 		
 	countries.push(start1, start2)
 
+	
 	function addCountry() {
 		const countryid = countriesHashMap[userSelectedCountry];
 		if(countryid) {
@@ -94,19 +95,6 @@
 		return names
 	}
 
-	//logic in progress
-	function names_of_user_countries() {
-		var names = ""
-		for(const id of countries) {
-			if (countries[countries.length - 1] != id) {
-				names = names + getKeyByValue(countriesHashMap, id) + " --> "
-			} else {
-				names = names + getKeyByValue(countriesHashMap, id)
-			}
-		}
-		return names
-	}
-
 	function giveUp() {
 		isTherePath = true;
 		giveUpBool = true;
@@ -150,9 +138,6 @@
 				<h1 style="font-size:170%; margin-left: 10px; color: green">You made the shortest possible path! It took you {numGuesses - 2} guesses. Congrats!</h1>
 			</div>
 		{/if}
-		<!-- <div>
-			<h1 style="font-size:90%; margin-left: 10px"> Your path: {names_of_user_countries()}<h1>
-		</div> -->
 	{:else if (numGuesses-2) === 1}
 		<div >
 			<h1 style="font-size:170%; margin-left: 10px; color: green">You made a path! It took you {numGuesses - 2} guess.</h1>
@@ -205,10 +190,6 @@
 <NewGameButton on:reset={reset} />
 
 <GiveUpButton on:giveUp={giveUp} />
-
-<!-- <span style = "float: right; padding-right:5px">
-	<button type="button" on:click="{giveUp}"> Give Up</button>
-</span> -->
 
 <span style = "padding-left:1px;"> 
 	<!-- code modified from https://svelte.dev/examples/modal -->
