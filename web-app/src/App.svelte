@@ -39,7 +39,7 @@
 		
 	countries.push(start1, start2)
 
-	
+
 	function addCountry() {
 		const countryid = countriesHashMap[userSelectedCountry];
 		if(countryid) {
@@ -202,22 +202,25 @@
 	</h2>
 
 	<ul class = "direction-list" style="line-height:100%">
-		<h3>Usability</h3>
-		<li>Hover over a colored country to see its name, or any country once the game is over</li>
-		<li>All of your guesses do not need to be in your final path</li>
-		<li>Scroll to zoom</li>
-		<li>Click and hold to drag map</li>
+		<h3>How to Play</h3>
+		<li style="line-height: 130%">Try to make the shortest path, but if you cannot do so still try to make any path
+			connecting the two starting countries.</li>
+		<li style="line-height: 130%">Enter your guesses from the dropdown menu.</li>
+		<li style="line-height: 130%">All of your guesses do not need to be in your final path.</li>
+		<li style="line-height: 130%">Hover over a colored country to see its name, or any country once a path has been made.</li>
+		<li style="line-height: 130%">Scroll to zoom.</li>
+		<li style="line-height: 130%">Click and hold to drag the map.</li>
 
 		<h3>Geographical Conditions</h3>
-		<li>Only UN-recognized countries are used</li>
-		<li>Includes borders with a country's enclaves and exclaves, 
-			with the exception of French Guiana
+		<li style="line-height: 130%">Only UN-recognized countries are used.</li>
+		<li style="line-height: 130%">Includes borders with a country's enclaves and exclaves, 
+			with the exception of French Guiana.
 		</li>
 
 		<h3>Color Key</h3>
-		<li style="line-height:100%"><span style="color:blue">Blue:</span> The starting and ending countries.</li>
-		<li style="line-height:100%"><span style="color:red">Red:</span> The countries that you have guessed.</li>
-		<li style="line-height:100%"><span style="color:green">Green:</span> The countries that are part of the shortest final path.</li>
+		<li style="line-height:130%"><span style="color:blue">Blue:</span> The countries that you are trying to connect.</li>
+		<li style="line-height:130%"><span style="color:red">Red:</span> The countries that you have guessed.</li>
+		<li style="line-height:130%"><span style="color:green">Green:</span> The countries that are part of your shortest final path.</li>
 	</ul>
 
 </Modal>
