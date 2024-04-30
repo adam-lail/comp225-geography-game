@@ -130,14 +130,14 @@
 {#each countries as country}
 	{#if country === countries[0] || country === countries[1]}
 		{#if document.querySelectorAll("#" + country + " .circlexx").length > 0}
-			{@html "<style> #" + country + " .circlexx { opacity: 0.5; fill: blue !important; pointer-events: auto !important; } <\/style>"}
+			{@html "<style> #" + country + " .circlexx { opacity: 0.5; fill: blue !important; pointer-events: auto !important; } </style>"}
 		{/if}
-		{@html "<style> ." + country + " { fill: blue !important; pointer-events: auto !important; } <\/style>"}
+		{@html "<style> ." + country + " { fill: blue !important; pointer-events: auto !important; } </style>"}
 	{:else}
 		{#if document.querySelectorAll("#" + country + " .circlexx").length > 0}
-			{@html "<style> #" + country + " .circlexx { opacity: 0.5; fill: red !important; pointer-events: auto !important; } <\/style>"}
+			{@html "<style> #" + country + " .circlexx { opacity: 0.5; fill: red !important; pointer-events: auto !important; } </style>"}
 		{/if}
-		{@html "<style> ." + country + " { fill: red !important; pointer-events: auto !important; } <\/style>"}
+		{@html "<style> ." + country + " { fill: red !important; pointer-events: auto !important; } </style>"}
 	{/if}
 {/each}
 
@@ -146,9 +146,9 @@
 	{#each shortest_path as country}
 		{#if country != shortest_path[0] && country != shortest_path[shortest_path.length-1]}
 			{#if document.querySelectorAll("#" + country + " .circlexx").length > 0}
-				{@html "<style> #" + country + " .circlexx { opacity: 0.5; fill: green !important; pointer-events: auto !important; } <\/style>"}
+				{@html "<style> #" + country + " .circlexx { opacity: 0.5; fill: green !important; pointer-events: auto !important; } </style>"}
 			{/if}
-			{@html "<style> ." + country + " { fill: green !important; pointer-events: auto !important; } <\/style>"}
+			{@html "<style> ." + country + " { fill: green !important; pointer-events: auto !important; } </style>"}
 		{/if}
 	{/each}
 {/if}
