@@ -159,9 +159,9 @@
 	#container {
 		border: 1px solid blue;
 		overflow: hidden;
-		width: 90%;
-		height: 70%;
-		left: 5%;
+		width: 100%;
+		height: 75%;
+		left: 0%;
 		position: relative;
 		padding-bottom: 5%;
 	}

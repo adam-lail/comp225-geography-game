@@ -87,7 +87,7 @@
 		var path = bfs_shortest_path(start1, start2)
 		for(const id of path) {
 			if (path[path.length - 1] != id) {
-				names = names + getKeyByValue(countriesHashMap, id) + " --> "
+				names = names + getKeyByValue(countriesHashMap, id) + " \u2192 "
 			} else {
 				names = names + getKeyByValue(countriesHashMap, id)
 			}
