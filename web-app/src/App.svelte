@@ -113,12 +113,16 @@
     }
   	});
 
+	function updateNumGuesses() {
+		numGuesses = countries.length;
+	}
+
 </script>
 
 {#if isTherePath}
 	
 	{#if numGuesses === 0}
-		{numGuesses = countries.length}
+		{updateNumGuesses()}
 	{/if}
 	{@html "<style> .landxx {pointer-events: auto !important; } <\/style>"}	
 	{#if giveUpBool}
@@ -179,13 +183,9 @@
 		
 {/if}
 
-
-
 <AutoComplete items={Object.keys(countriesHashMap)} bind:selectedItem={userSelectedCountry} placeholder="Add a country to your path" showClear=true/>
 
 <button type="button" on:click="{addCountry}"> Add </button>
-
-
 
 <NewGameButton on:reset={reset} />
 
