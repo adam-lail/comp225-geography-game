@@ -13,6 +13,17 @@
 
 	const elements = []
 
+	let viewboxY = window.innerHeight / window.innerWidth;
+
+	if (viewboxY < 0.5) {
+		viewboxY *= 50;
+	} else if (viewboxY > 0.8) {
+		viewboxY *= 600;
+	}
+	else {
+		viewboxY *= 250;
+	}
+
 	// from https://stackoverflow.com/questions/76150884/how-to-use-the-mouse-wheel-to-zoom-on-an-svg-using-the-viewbox
 	window.addEventListener("DOMContentLoaded", (event) => {
 		const svg = document.querySelector('svg');
@@ -176,7 +187,7 @@
 </style>
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div id="container">
-	<svg id="map"class="map" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 2800 100000">
+	<svg id="map"class="map" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-300 -{viewboxY} 3400 100000">
 
 		<style id="style_css_sheet" type="text/css">
 

@@ -74,7 +74,16 @@
 		countries.push(start1, start2);
 		isTherePath = false;
 		const svg = document.getElementById("map");
-		svg.setAttribute("viewBox", "0 0 2800 100000");
+		let viewboxY = window.innerHeight / window.innerWidth;
+		if (viewboxY < 0.5) {
+			viewboxY *= 50;
+		} else if (viewboxY > 0.8) {
+			viewboxY *= 600;
+		}
+		else {
+			viewboxY *= 250;
+		}
+		svg.setAttribute("viewBox", "-300 -" + viewboxY + " 3400 100000");
 	};
 
 	// copied from https://stackoverflow.com/questions/9907419/how-to-get-a-key-in-a-javascript-object-by-its-value
