@@ -30,6 +30,8 @@
 	var isTherePath = false;
 
 	var giveUpBool = false;
+	
+	var autoBool = true;
 
 	var numGuesses = 0;
 	
@@ -67,6 +69,8 @@
 
 	function reset() {
 		giveUpBool = false;
+		autoBool = false;
+		numGuesses = 0;
 		chooseEndCountriesFunction = new chooseEndCountries();
 		start1 = chooseEndCountriesFunction[0];
 		start2 = chooseEndCountriesFunction[1];
@@ -84,6 +88,7 @@
 			viewboxY *= 250;
 		}
 		svg.setAttribute("viewBox", "-300 -" + viewboxY + " 3400 100000");
+		
 	};
 
 	// copied from https://stackoverflow.com/questions/9907419/how-to-get-a-key-in-a-javascript-object-by-its-value
@@ -192,7 +197,13 @@
 		
 {/if}
 
-<AutoComplete items={Object.keys(countriesHashMap)} bind:selectedItem={userSelectedCountry} placeholder="Add a country to your path" showClear=true/>
+{#if autoBool}
+	<AutoComplete items={Object.keys(countriesHashMap)} bind:selectedItem={userSelectedCountry} placeholder="Add a country to your path" showClear=true/>
+{:else}
+	{userSelectedCountry = ""}
+	<AutoComplete items={Object.keys(countriesHashMap)} bind:selectedItem={userSelectedCountry} placeholder="Add a country to your path" showClear=true/>
+	{autoBool = true}
+{/if}
 
 <button type="button" on:click="{addCountry}"> Add </button>
 
