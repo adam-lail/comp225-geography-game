@@ -131,6 +131,10 @@
 		numGuesses = countries.length;
 	}
 
+	function updateAutoBool() {
+		autoBool = true;
+	}
+
 </script>
 
 {#if isTherePath}
@@ -202,7 +206,7 @@
 {:else}
 	{userSelectedCountry = ""}
 	<AutoComplete items={Object.keys(countriesHashMap)} bind:selectedItem={userSelectedCountry} placeholder="Add a country to your path" showClear=true/>
-	{autoBool = true}
+	{updateAutoBool()}
 {/if}
 
 <button type="button" on:click="{addCountry}"> Add </button>
