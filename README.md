@@ -1,5 +1,8 @@
 # Country Connect
 
+## About the app
+A short game made during Spring 2024 for COMP-225 at Macalester, about connecting two countries. Try to make a path by guessing the names of the bordering countries in the fewest guesses possible.
+
 ## How to Install/Use
 Find the project file in your terminal then run the following to install the dependencies
 ```bash
@@ -15,8 +18,6 @@ npm run dev
 
 
 Navigate to [localhost:8080](http://localhost:8080), to start playing the game. 
-
-## About the app
 
 ## Future geographical changes
 
